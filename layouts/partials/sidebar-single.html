@@ -1,0 +1,11 @@
+{{- $s := site.Params }}
+{{- $p := .Params }}
+<aside class="sidebar">
+  <section class="sidebar_inner">
+
+    {{ if $p.toc }}
+    <div class="js-toc toc toc-right side-toc relative z-1 absolute pa4 pt5"></div>
+    {{ end }}
+
+  </section>
+</aside>
