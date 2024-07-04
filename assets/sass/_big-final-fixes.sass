@@ -1,0 +1,203 @@
+
+// --- MAIN TEXT ---
+
+article.post_content
+  p, blockquote
+    font-size: 1.15rem
+
+  blockquote.small p
+    font-size: 1.0rem
+
+  blockquote li p
+    padding-top: 2px
+    padding-bottom: 2px
+
+  figcapt
+    text-align: left
+
+article.post_content .fig figcaption
+  text-align: left
+  font-style: inherit
+
+// --- BIG LAYOUT and LIST FIXES!! Not pretty would love to properly integrate, till then...
+
+.content
+  padding-top: 2rem
+
+.page-content
+  margin-top: 2rem
+
+.page-content.series
+  background: var(--post-bg)
+  margin-top: 0
+  padding-top: 20px
+  padding-bottom: 60px
+  border-end-end-radius: 10px
+  border-end-start-radius: 10px
+
+.post_item
+  margin-bottom: 10px
+
+  .excerpt_footer
+    padding: 0 1rem 0.25rem 1rem
+  a.excerpt_more.button
+    display: none
+  .post_link
+    font-size: 22px
+    line-height: 1
+    margin-top: 0
+  .post_meta
+    font-size: 14px
+    > .tags-meta
+      display: none
+  p.pale
+    padding-top: 0
+    font-size: 16px
+
+  .image_thumbnail
+    // margin: inherit
+    padding: 5px
+
+  .excerpt_thumbnail
+    min-height: inherit // 10rem
+
+  .excerpt_thumbnail > picture
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    img
+      max-width: 150px
+
+  .excerpt_header, .excerpt_footer
+    padding-bottom: 0.5rem
+
+  .excerpt_footer.partition
+    grid-template-columns: inherit
+    grid-gap: 1rem
+
+  .excerpt_thumbnail
+    display: inherit
+
+  @media screen and (min-width: 769px)
+    .excerpt_footer.partition
+      grid-template-columns: 2fr 7fr
+      grid-gap: 1rem
+
+.sidebar
+  grid-column: inherit
+
+@media screen and (min-width: 42rem)
+  .grid-inverse
+    grid-template-columns: 67% 1fr
+    grid-column-gap: 1.5rem
+
+@media screen and (max-width: 860px)
+  .grid-inverse
+    grid-template-columns: inherit
+    grid-column-gap: 1.5rem
+
+
+.nav_header
+  position: inherit
+  //background-color: inherit // keep same color as page...
+
+// --- BLOCKQUOTE ---
+
+blockquote
+  position: inherit // was set to `relative`
+
+article.post_content blockquote
+  font-size: 1.2rem
+  margin: 3px 20px 3px 0
+  padding: 0 20px 0 20px
+
+blockquote.compact
+  p
+    padding-top: 5px
+    padding-bottom: 5px
+    font-style: italic
+    //font-size: 16px
+
+article.post_content aside
+  background-color: var(--aside)
+  padding: 10px 30px
+  border-top: solid 3px var(--theme)
+  margin-bottom: 20px
+
+// --- TOP NAVBAR DISPLAY ---
+
+.nav_item
+  font-size: 14px
+
+.nav_brand
+  margin-right: 20px
+
+// ----- IMAGES -----
+
+.image_featured
+  max-height: 500px
+
+// ----- TAGS / BUTTONS -----
+
+/* --- tags, misc btns, socmed btns, etc --- */
+
+.post_tag, .post_share
+  margin: 0.5rem
+  margin: 0.25rem
+
+.post_tag
+  padding: 0.2rem 0.8rem
+  font-size: 0.8rem
+  font-size: 0.7rem
+
+.button_tally
+  padding: 0 0.45rem
+  border-radius: 0.5rem
+  margin: 0.1rem 0 0.1rem 0.3rem
+
+  
+// ----- series-archive -----
+
+.series-list
+  margin: 0
+
+  ul
+    padding: 0
+    list-style: initial
+
+  .list-thumb-img
+    max-height: 100px
+    max-width: 100px
+
+  .row
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    width: 100%
+    min-height: 40px
+    
+  .title-col
+    flex: 2 0 14em
+    padding-bottom: 15px
+
+  .img-col
+    width: 115px
+
+    .list-img
+      height: 100%
+
+      .list-thumb-img
+        color: blue
+        margin: 0
+        padding: 5px
+
+    .notices.image-warning
+      margin: 5px
+      font-size: 11px
+      .label
+        //color: green !important
+        font-size: 16px
+        font-weight: normal     
+      p
+        display: none
+
