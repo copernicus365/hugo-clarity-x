@@ -1,0 +1,96 @@
+.page-content {
+  display: grid;
+  grid-template-columns: 1fr 750px 2fr;
+  justify-content: stretch;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
+  column-gap: 50px;
+  margin-top: 60px; // hack, but top navbar is over, HACK to move back down, DON'T want to get into nav layout mess
+}
+
+.page-content.no-asides {
+  grid-template-columns: 1fr 750px 1fr;
+}
+
+.sidebar-left {
+  grid-column: 1;
+  //border: 2px solid orange;
+}
+
+.main-content {
+  grid-column: 2;
+  //border: 2px solid lightgreen;
+  max-width: 750px;
+}
+
+.sidebar {
+  grid-column: 3;
+  //border: 2px solid rgb(180, 144, 238);
+  //min-width: 200px;
+}
+
+.side-toc {
+  transform: translateX(100%);
+  right: calc((100% - 75rem) / 2);
+  overflow: hidden;
+}
+
+.post_body {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 2000px) and (min-width: 1100px),
+  (min-width: 2000px) {
+  .side-toc {
+    //background-color: rgb(255, 226, 179);
+  }
+}
+
+@media screen and (max-width: 1099px) and (min-width: 860px) {
+  
+  .page-content {
+    grid-template-columns: 0 550px auto;
+    column-gap: 35px;
+  }
+  .page-content.no-asides {
+    grid-template-columns: 1fr 600px 1fr;
+  }
+
+  .side-toc {
+    transform: translateX(0);
+    right: calc((100% - 56rem) / 2);
+
+    &.toc-right ~ .content {
+      margin-left: 0;
+      //margin-right: 280px;
+    }
+  }
+}
+
+@media screen and (max-width: 859px) and (min-width: 300px) {
+  .side-toc {
+    display: none;
+  }
+  .sidebar {
+    display: none;
+  }
+  .sidebar-left {
+    display: none;
+  }
+  .page-content {
+    grid-template-columns: 0 auto 0;
+    column-gap: 25px;
+  }
+  .page-content.no-asides {
+    grid-template-columns: 0 auto 0;
+  }
+}
+
+// ----------
+
+// remove to_top icon for now, is messed, return it when have time to fix
+
+.to_top {
+  display: none;
+}
