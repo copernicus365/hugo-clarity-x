@@ -2,9 +2,13 @@
 const doc = document.documentElement;
 const inline = ":inline";
 // variables read from your hugo configuration
+const parentURL = window.location.protocol + "//" + window.location.host + "/";
 let showImagePosition = "{{ .Site.Params.figurePositionShow }}";
 
 const showImagePositionLabel = '{{ .Site.Params.figurePositionLabel }}';
+
+let disableLargeImageProcessing = "{{ .Site.Params.disableLargeImageProcessing }}";
+let disableAltImageProcessing = "{{ .Site.Params.disableAltImageProcessing }}";
 
 function isObj(obj) {
   return (obj && typeof obj === 'object' && obj !== null) ? true : false;
@@ -132,6 +136,19 @@ function copyToClipboard(str) {
 }
 
 const iconsPath = '{{ default "icons/" .Site.Params.iconsDir }}';
+
+// add: don't know if this is from old or was added by us, etc
+function loadSvg(file, parent, path = iconsPath) {
+  const link = `${parentURL}${path}${file}.svg`;
+  fetch(link)
+  .then((response) => {
+    return response.text();
+  })
+  .then((data) => {
+    parent.innerHTML = data;
+  });
+}
+
 
 function getMobileOperatingSystem() {
   let userAgent = navigator.userAgent || navigator.vendor || window.opera;

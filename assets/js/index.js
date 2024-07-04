@@ -225,6 +225,9 @@ function fileClosure(){
   }
 
   function populateAlt(images) {
+    if(disableAltImageProcessing)
+      return;
+
     let imagePosition = 0;
 
     images.forEach((image) => {
@@ -326,10 +329,14 @@ function fileClosure(){
   }
 
   (function AltImage() {
+    if(disableAltImageProcessing)
+      return;
+
     let post = elem('.post_content');
     let images = post ? post.querySelectorAll('img') : false;
     images ? populateAlt(images) : false;
-    largeImages(post, images);
+    if(!disableLargeImageProcessing)
+      largeImages(post, images);
   })();
 
   doc.addEventListener('click', function(event) {
