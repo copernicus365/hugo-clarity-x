@@ -47,8 +47,7 @@ iconsDir = "icons/" # without a leading forward slash
 # Fonts:
 fontsDir = "fonts/" # without a leading forward slash
 
-# Social media sharing image: Will be used on Twitter, Facebook, LinkedIn, etc.
-# when a given page has no other image present.
+# will be used on share >> twitter, facebook, linkedin, etc. when a given page has no other image present.
 fallBackOgImage = "images/thumbnail.png"
 
 # Logo image
