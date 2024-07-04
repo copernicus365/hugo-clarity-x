@@ -1,0 +1,70 @@
+{{- $params := .Site.Params }}
+{{- $pages := .Pages }}
+{{- $pparams := .Params }}
+{{- $seriesp := .Params.series }}
+{{- $titleReplace := $seriesp.title.replace }}
+{{- $titleReplaceVal := $seriesp.title.replaceVal }}
+{{- $titleCut := $seriesp.title.cutPrefix }}
+
+<div class="page-content no-asides series">
+  <article class="post_content main-content">
+    <div class="top-content">
+      <h1>{{ .Title }}</h1>
+      {{ partial "share" . }}
+      {{.Content}}
+    </div>
+    <div class="series-list">
+      <ul class="posts" id="posts">
+        {{- range .Pages }}
+        {{- $title := .Title }}
+
+        {{- if $seriesp }}
+        {{- if $titleReplace }}
+        {{- $title = replace $title $titleReplace $titleReplaceVal }}
+        {{else if $titleCut}}
+        {{- $title = substr $title $titleCut }}
+        {{- end }}
+        {{- end }}
+
+        {{- $order := .Params.order }}
+        <div class="row" id="n{{$order}}">
+          <div class="col img-col">
+            <div class="list-img">
+              {{- with .Params.thumbnail }}
+              {{- $file := . | safeURL }}{{/* filename of image */}}
+              {{/* Check if page bundles are set. */}}
+              {{- $bundle := $.Site.Params.usePageBundles }}
+              {{- if eq $.Params.usePageBundles false }}
+              {{- $bundle = false }}
+              {{- end }}
+              {{- if eq $.Params.usePageBundles true }}
+              {{- $bundle = true }}
+              {{- end }}
+              {{- $fileWeb := "" -}}{{/* full path to image, relative to the web root */}}
+              {{- $fileDisk := "" -}}{{/* full path to image, relative to the file root */}}
+              {{- if eq $bundle true }}
+              {{- $fileWeb = (add $.Page.RelPermalink $file) -}}
+              {{- $fileDisk = (add "/content/" (add $.Page.File.Dir $file)) }}
+              {{- else }}
+              {{- $fileWeb = absURL . -}}
+              {{- $fileDisk = (add "/static/" $file) }}
+              {{- end }}
+              {{- if fileExists $fileDisk }}
+              {{- $img := imageConfig $fileDisk -}}{{/* image element (passed through imageConfig) */}}
+              <img class="list-thumb-img" src="{{ $file }}" alt="{{ $.Title }}" loading="lazy" />
+              {{/*  {{- partial "image-thumbnail" (dict "file" $file "fileWeb" $fileWeb "fileDisk" $fileDisk "img" $img "alt" $.Title) }}  */}}
+              {{- else }}
+              {{ partial "image-error" (dict "fileWeb" $fileWeb "fileDisk" $fileDisk "bundle" $bundle) }}
+              {{- end }}
+              {{- end }}
+            </div>
+          </div>
+          <div class="col title-col">
+            <a href="{{ .Permalink }}" title="{{ $title }}">{{ $title }}</a>
+          </div>
+        </div>
+        {{- end }}
+      </ul>
+    </div>
+  </article>
+</div>
