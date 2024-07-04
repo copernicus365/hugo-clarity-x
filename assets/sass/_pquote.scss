@@ -1,0 +1,28 @@
+.post_body .pquote {
+  float: right;
+  width: 240px;
+  font-size: 26px;
+  line-height: 1.5;
+  font-style: italic;
+  margin: 0;
+  margin-left: 15px;
+  
+  p::before {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: initial;
+    font-family: Cochin, Georgia, Cambria, Times, 'Times New Roman', serif;
+    content: "“";
+  }
+
+  //padding-top: 15px; // with our char content val, padding top needed
+  //background: url(/icons/openquote.gif) top left no-repeat;
+
+  // // if using ::before with content char, then 'first-letter' will only apply to that...
+  // p:first-letter {
+  //   font-size: 39px;
+  //   font-weight: bold;
+  // }
+}
+
+// partal inspiration from: https://htmldog.com/techniques/pullquotes/
