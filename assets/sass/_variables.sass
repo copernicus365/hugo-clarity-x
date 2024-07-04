@@ -1,3 +1,6 @@
+$font-path: '../fonts'
+// $icons: '{{ printf "../%s" (default "icons/" .Site.Params.iconsDir) }}'
+$imagesPath: '../images/'
 $light: #fff
 $haze: #fafafa
 $xhaze: darken($haze, 11%)
@@ -5,6 +8,7 @@ $bg: #002538
 $theme: #0077b8
 $mobile-menu-breakpoint: 769px
 $single-column-breakpoint: 42rem
+$tocBorderColor: #aaaaaa
 
 @mixin  content()
   --maxWidth: 1440px
@@ -33,7 +37,10 @@ html
   --text: #575757
   --header-text: var(--dark)
   --font: Metropolis, sans-serif
-  --theme: #0077b8
+  --theme: hsl(201, 100%, 36%) // #0077b8
+  --aside: #f2f2f2
+  --theme-lighter: hsl(201, 100%, 46%)
+  --theme-darker: hsl(201, 100%, 26%) // hsl(from var(--theme) h s calc(l - 10%))
   --ease: cubic-bezier(.19,1,.22,1)
   --code-bg: var(--bg)
   --table-bg: var(--light)
@@ -56,24 +63,36 @@ html
   --notice-tip-background: #E6F9E6
   --notice-warning-border-color: rgba(217, 83, 79, 0.8)
   --notice-warning-background: #FAE2E2
+  --toc-color: var(--theme) // #bc360a
+  --toc-color-accent: var(--theme-darker)
+  --toc-bg: #f9f9f9
 
   &.page
     --choice-bg: var(--light)
   @mixin darkmode
+    --theme: hsl(201, 50%, 62%)
     --light: hsla(0,0%,100%,0.87)
+    --light-darker: hsl(0 0% 80% / 85%)
+    --dark-bg: #1f1f1f
+    --dark-bg-lighter: #303030
+    --aside: var(--dark-bg-lighter)
     --color-mode: 'dim'
+    --bg: var(--dark-bg)
     --text: var(--light)
     --accent: var(--bubble)
     --choice-bg: var(--bg)
     --code-bg: var(--translucent-light)
     --header-text: var(--light)
+    --toc-color: var(--light)
+    --toc-color-accent: var(--light-darker)
+    --toc-bg: var(--bg)
     --table-bg: var(--code-bg)
     --table-haze: rgba(255,255,255,0.1)
     --table-border: var(--code-bg)
     --footer-bg: var(--bg)
     --post-bg: var(--translucent-light)
     *
-      // box-shadow: none !important
+      box-shadow: none !important
 
   &[data-mode="dim"]
     @include darkmode
