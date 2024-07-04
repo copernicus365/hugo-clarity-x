@@ -1,0 +1,78 @@
+/* --- .toc / #TableOfContents styling --- */
+
+.post_toc
+  background: var(--toc-bg)
+  border: 1px solid $tocBorderColor
+  width: 100%
+  border-radius: 0px
+  margin-top: 15px
+  margin-bottom: 12px
+  padding: 18px
+  font-size: 85%
+
+  .toc-title
+    margin-bottom: 5px
+    margin-top: 0
+    margin-left: 5px
+    letter-spacing: 5px
+    font-weight: 600
+    color: #5a5a5a
+    font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif
+    font-size: 16px
+
+  ol
+    list-style-type: decimal
+    list-style-position: inside
+
+  ul
+    list-style-type: none
+    li
+      padding-top: 0.1rem
+
+  ul, ol
+    margin-left: 8px
+    margin-bottom: 0px
+    padding: 2px 0px
+    counter-reset: item
+
+    li a
+      box-shadow: none
+      color: var(--toc-color)
+      &:hover
+        box-shadow: none
+        color: var(--toc-color-accent) //darken(var(--toc-color), 10%)
+      &:visited
+        color: var(--toc-color)
+
+  // --- type ---
+  // it would be easier to have these rules directly on the ul/ol,
+  // however, for the html, this way it's far easier to set on the
+  // top .toc what type of li we want, so all they have to do is e.g.
+  // <div class="toc counter-lower-roman"> ..., without having to set
+  // anything else, which is paramount in this case when using hugo's
+  // own toc short-code generator which we don't have access to
+  &.counter-square ul
+    list-style-type: square
+
+  &.counter-decimal li
+    list-style-type: decimal
+    list-style-position: inside
+
+    // a::before
+    //   content: counters(item, ".") "."
+    //   //color: red <-- can't figure out how to color the decimals..., pry just don't do auto ordered tho, keep order in manual titles
+    //   counter-increment: item
+
+  &.counter-lower-roman
+    ol, ul
+      list-style-type: lower-roman
+
+  &.counter-upper-roman
+    ol, ul
+      list-style-type: upper-roman
+
+  // &.counter-lower-roman
+  // &.counter-upper-roman
+  //   li a::before
+  //     content: counters(item, ".", upper-roman) "."
+  //     counter-increment: item
