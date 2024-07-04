@@ -1,6 +1,7 @@
 {{- $showShare := ne (.Param "showshare") false }}
 {{- $showDate := ne (.Param "showdate") false }}
 {{- $showReadTime := ne (.Param "showreadtime") false }}
+{{- $showAuthor := ne (.Param "showAuthor") false }}
 {{- $showPostMeta := or ($showShare) ($showDate) ($showReadTime) (isset .Params "tags") }}
 {{- $scratch := newScratch }}
 {{- $scratch.Set "writeSeparator" false }}
@@ -8,18 +9,20 @@
   <div class="post_meta">
 {{- end }}
   {{- if $showDate }}
-    <span>{{ partial "sprite" (dict "icon" "calendar") }}</span>
+    <span class="post_date_icon">{{ partial "sprite" (dict "icon" "calendar") }}</span>
     <span class="post_date">
       {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) -}}
     </span>
-    {{- $scratch.Set "writeSeparator" true }}
   {{- end }}
   {{- if $showReadTime }}
-    <span class="post_time">{{ if ($scratch.Get "writeSeparator") }} · {{ end }}{{ T "reading_time" . }}</span>
+    <span class="post_time">{{ if ($scratch.Get "writeSeparator") }} · {{ end }}{{/* T "reading_time" . */}}</span>
     {{- $scratch.Set "writeSeparator" true }}
   {{- end }}
+  {{- with .Params.author -}}
+  <span class="author"> by {{ . }}</span>
+  {{- end }}
   {{- with .Params.tags -}}
-    <span>
+    <span class="tags-meta">
       {{- if ($scratch.Get "writeSeparator") }}&nbsp;· {{ end }}
       {{- range . }}
         {{- $tag := urlize . -}}
